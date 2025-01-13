@@ -21,12 +21,17 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.ico" />
+        <title>Home - Gym Management</title>
+        <meta name="description" content="Welcome to Gym Management!" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar></Navbar>
+        <Navbar />
         <div className="h-[90vh]">{children}</div>
-        <Footer></Footer>
+        <Footer />
       </body>
     </html>
   );
