@@ -1,6 +1,14 @@
+"use client"
+import Header from "@/Components/ui/Header";
+import { usePathname } from "next/navigation";
+
 const Contact =()=>{
+    const path = usePathname();
+
     return (
-        <h1>Contact</h1>
+        <>
+            <Header Title={"Contact Page"} Path={path}></Header>
+        </>
     );
 }
 export default Contact;

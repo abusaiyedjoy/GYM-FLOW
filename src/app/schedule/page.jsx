@@ -1,6 +1,14 @@
+"use client"
+import Header from "@/Components/ui/Header";
+import { usePathname } from "next/navigation";
+
 const Schedule =()=>{
+    const path = usePathname();
+
     return (
-        <h1>Schedule</h1>
+        <>
+            <Header Title={"Schedule Page"} Path={path}></Header>
+        </>
     );
 }
 export default Schedule;

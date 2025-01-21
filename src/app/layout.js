@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
         <meta name="description" content="Welcome to Gym Management!" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-100`}
       >
         <Navbar />
         <div className="min-h-[90vh]">{children}</div>
