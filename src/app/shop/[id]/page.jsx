@@ -4,9 +4,15 @@ import ReviewsSection from "@/Components/ui/Review";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 
+
+export const metadata = {
+  title: "GYM-FLOW | Product Details",
+  description: "Discover details about our premium fitness products at GYM-FLOW.",
+};
+
 const ProductDetails = ({ params }) => {
   const path = usePathname();
-  
+
   const products = [
     {
       id: 1,
@@ -199,7 +205,7 @@ const ProductDetails = ({ params }) => {
       ],
     },
   ];
-  
+
 
   const product = products.find((p) => p.id === Number(params.id)) || products[0];
   const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
@@ -217,112 +223,109 @@ const ProductDetails = ({ params }) => {
   return (
     <>
       <Header Title={"Products Details"} Path={path}></Header>
-    <div className="min-h-screen container mx-auto bg-gray-100 py-10 px-4">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Left Section - Product Image and Gallery */}
-        <div>
-          <div className="bg-gray-50 rounded-lg shadow-lg p-6">
-            <img
-              src={product.imageUrl}
-              alt={product.name}
-              className="rounded-lg w-full object-cover"
-            />
-          </div>
-          <div className="flex space-x-4 mt-4">
-            {product.gallery.map((image, index) => (
+      <div className="min-h-screen container mx-auto bg-gray-100 py-10 px-4">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Left Section - Product Image and Gallery */}
+          <div>
+            <div className="bg-gray-50 rounded-lg shadow-lg p-6">
               <img
-                key={index}
-                src={image}
-                alt={`Gallery ${index}`}
-                className="w-20 h-20 rounded-lg object-cover cursor-pointer border border-gray-200"
-                onClick={() => console.log("Change Main Image!")}
+                src={product.imageUrl}
+                alt={product.name}
+                className="rounded-lg w-full object-cover"
               />
-            ))}
-          </div>
-        </div>
-
-        {/* Right Section - Product Details */}
-        <div>
-          <h1 className="text-3xl font-bold text-gray-800">{product.name}</h1>
-          <div className="flex items-center mt-2 space-x-2">
-            <span className="text-yellow-500 text-xl">⭐</span>
-            <span className="text-gray-700 font-medium">{product.rating} Rating</span>
-            <span
-              className={`${
-                product.stock ? "text-green-600" : "text-red-600"
-              } text-sm font-semibold`}
-            >
-              {product.stock ? "In Stock" : "Out of Stock"}
-            </span>
-          </div>
-          <p className="text-gray-600 mt-4">{product.description}</p>
-          <p className="text-xl font-bold text-gray-800 mt-4">
-            ${product.price.toFixed(2)}{" "}
-            <span className="text-sm text-gray-500">+{product.vat}% VAT Added</span>
-          </p>
-
-          {/* Quantity Selector */}
-          <div className="flex items-center mt-4 space-x-4">
-            <button
-              className="px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded"
-              onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}
-            >
-              -
-            </button>
-            <span className="text-lg">{quantity}</span>
-            <button
-              className="px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded"
-              onClick={() => setQuantity(quantity + 1)}
-            >
-              +
-            </button>
-          </div>
-
-          {/* Size Selector */}
-          <div className="mt-6">
-            <h3 className="text-gray-700 font-semibold">Select Size</h3>
-            <div className="flex space-x-4 mt-2">
-              {product.sizes.map((size) => (
-                <button
-                  key={size}
-                  className={`px-4 py-2 rounded-lg border ${
-                    selectedSize === size
-                      ? "bg-[#d10101] text-white"
-                      : "bg-gray-100 text-gray-800"
-                  }`}
-                  onClick={() => setSelectedSize(size)}
-                >
-                  {size}
-                </button>
-              ))}
             </div>
-          </div>
-
-          {/* Color Selector */}
-          <div className="mt-6">
-            <h3 className="text-gray-700 font-semibold">Select Color</h3>
-            <div className="flex space-x-4 mt-2">
-              {product.colors.map((color, index) => (
-                <div
+            <div className="flex space-x-4 mt-4">
+              {product.gallery.map((image, index) => (
+                <img
                   key={index}
-                  className={`w-8 h-8 rounded-full cursor-pointer border-2 ${
-                    selectedColor === color ? "border-red-700" : "border-gray-300"
-                  }`}
-                  style={{ backgroundColor: color }}
-                  onClick={() => setSelectedColor(color)}
-                ></div>
+                  src={image}
+                  alt={`Gallery ${index}`}
+                  className="w-20 h-20 rounded-lg object-cover cursor-pointer border border-gray-200"
+                  onClick={() => console.log("Change Main Image!")}
+                />
               ))}
             </div>
           </div>
 
-          {/* Add to Cart Button */}
-          <button className="w-full bg-[#d10101] hover:bg-[#b90101] text-white text-sm font-semibold py-3 rounded-lg shadow mt-6 transition duration-300">
-            Add to Cart
-          </button>
+          {/* Right Section - Product Details */}
+          <div>
+            <h1 className="text-3xl font-bold text-gray-800">{product.name}</h1>
+            <div className="flex items-center mt-2 space-x-2">
+              <span className="text-yellow-500 text-xl">⭐</span>
+              <span className="text-gray-700 font-medium">{product.rating} Rating</span>
+              <span
+                className={`${product.stock ? "text-green-600" : "text-red-600"
+                  } text-sm font-semibold`}
+              >
+                {product.stock ? "In Stock" : "Out of Stock"}
+              </span>
+            </div>
+            <p className="text-gray-600 mt-4">{product.description}</p>
+            <p className="text-xl font-bold text-gray-800 mt-4">
+              ${product.price.toFixed(2)}{" "}
+              <span className="text-sm text-gray-500">+{product.vat}% VAT Added</span>
+            </p>
+
+            {/* Quantity Selector */}
+            <div className="flex items-center mt-4 space-x-4">
+              <button
+                className="px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded"
+                onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}
+              >
+                -
+              </button>
+              <span className="text-lg">{quantity}</span>
+              <button
+                className="px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded"
+                onClick={() => setQuantity(quantity + 1)}
+              >
+                +
+              </button>
+            </div>
+
+            {/* Size Selector */}
+            <div className="mt-6">
+              <h3 className="text-gray-700 font-semibold">Select Size</h3>
+              <div className="flex space-x-4 mt-2">
+                {product.sizes.map((size) => (
+                  <button
+                    key={size}
+                    className={`px-4 py-2 rounded-lg border ${selectedSize === size
+                        ? "bg-[#d10101] text-white"
+                        : "bg-gray-100 text-gray-800"
+                      }`}
+                    onClick={() => setSelectedSize(size)}
+                  >
+                    {size}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Color Selector */}
+            <div className="mt-6">
+              <h3 className="text-gray-700 font-semibold">Select Color</h3>
+              <div className="flex space-x-4 mt-2">
+                {product.colors.map((color, index) => (
+                  <div
+                    key={index}
+                    className={`w-8 h-8 rounded-full cursor-pointer border-2 ${selectedColor === color ? "border-red-700" : "border-gray-300"
+                      }`}
+                    style={{ backgroundColor: color }}
+                    onClick={() => setSelectedColor(color)}
+                  ></div>
+                ))}
+              </div>
+            </div>
+
+            {/* Add to Cart Button */}
+            <button className="w-full bg-[#d10101] hover:bg-[#b90101] text-white text-sm font-semibold py-3 rounded-lg shadow mt-6 transition duration-300">
+              Add to Cart
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-    <ReviewsSection></ReviewsSection>
+      <ReviewsSection></ReviewsSection>
     </>
   );
 };

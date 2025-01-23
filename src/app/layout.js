@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "GYM-FLOW",
-  description: "Fitness Tracker App",
+  title: "GYM-FLOW | Home",
+  description: "Welcome to GYM-FLOW, your ultimate destination for fitness and health.",
 };
 
 export default function RootLayout({ children }) {

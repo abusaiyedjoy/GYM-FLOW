@@ -55,7 +55,7 @@ const Navbar = () => {
         <div className="text-2xl font-bold">
           <Link
             href="/"
-            className="text-red-700 transition-colors duration-300 flex justify-center items-center gap-2"
+            className="text-primary transition-colors duration-300 flex justify-center items-center gap-2"
           >
             <img
               width={"42px"}
@@ -72,7 +72,7 @@ const Navbar = () => {
             <li key={index}>
               <Link
                 href={item.id}
-                className="hover:text-red-700 transition-colors duration-300"
+                className="hover:text-primary transition-colors duration-300"
               >
                 {item.title}
               </Link>
@@ -104,7 +104,7 @@ const Navbar = () => {
               <li key={index}>
                 <Link
                   href={item.id}
-                  className="block text-lg hover:text-red-700 transition-colors duration-300"
+                  className="block text-lg hover:text-primary transition-colors duration-300"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.title}
