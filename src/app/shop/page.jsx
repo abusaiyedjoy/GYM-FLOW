@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 
-export const metadata = {
+ const metadata = {
   title: "GYM-FLOW | Shop",
   description: "Explore our shop for the best fitness gear and accessories at GYM-FLOW.",
 };

@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 
 
 
-export const metadata = {
+ const metadata = {
     title: "GYM-FLOW | Contact Us",
     description: "Get in touch with us for any inquiries, support, or feedback about GYM-FLOW.",
   };

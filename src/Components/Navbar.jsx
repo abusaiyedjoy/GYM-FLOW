@@ -27,6 +27,10 @@ const Navbar = () => {
       id: "/contact",
       title: "Contact",
     },
+    {
+      id: "/cart",
+      title: "Cart",
+    },
   ];
 
   useEffect(() => {

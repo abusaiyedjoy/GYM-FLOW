@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 
 
-export const metadata = {
+ const metadata = {
   title: "GYM-FLOW | Product Details",
   description: "Discover details about our premium fitness products at GYM-FLOW.",
 };
