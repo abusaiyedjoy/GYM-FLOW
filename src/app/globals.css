@@ -113,3 +113,34 @@ body {
     --radius: 0.5rem;
   }
 }
+
+
+
+/* For Loading page of home screen */
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-fadeOut {
+  animation: fadeOut 3s ease-out forwards;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 3s ease-in 3s forwards;
+}

@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useState } from "react";
 import { FaTrash } from "react-icons/fa";
 
@@ -118,9 +119,9 @@ const CartPage = () => {
                 <span>Total:</span>
                 <span>${totalPrice}</span>
               </div>
-              <button className="button w-full my-2">
+              <Link href="/checkout" className="button w-full my-2">
                 Proceed to Checkout
-              </button>
+              </Link>
             </div>
           </div>
         </>

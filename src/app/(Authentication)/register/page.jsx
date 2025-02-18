@@ -1,69 +1,124 @@
+"use client";
 import Link from "next/link";
-import { FaGoogle, FaFacebookF } from "react-icons/fa";
+import { useForm } from "react-hook-form";
 
 const SignUp = () => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+    reset();
+  };
+
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-purple-500 to-pink-500">
-      <div className="bg-white bg-opacity-10 backdrop-blur-lg p-8 rounded-lg shadow-xl max-w-sm w-full border border-white border-opacity-30">
-        <h1 className="text-4xl font-bold text-center text-white mb-6">Create Account</h1>
+    <div className="flex h-screen w-full bg-gray-900">
+      {/* Left Side - Hidden on small screens */}
+      <div className="hidden lg:block lg:w-1/2">
+        <img
+          src="https://i.ibb.co.com/6cFnYcnT/anastase-maragos-jz-P8-Rg6a-VU-unsplash.jpg"
+          alt="Background"
+          className="h-full w-full object-cover"
+        />
+      </div>
 
-        {/* Social Login */}
-        <div className="space-y-3">
-          <button className="w-full flex items-center justify-center gap-3 bg-white text-purple-600 font-medium py-2 px-4 rounded-md hover:bg-gray-200 transition duration-300">
-            <FaGoogle className="text-xl" />
-            Sign Up with Google
-          </button>
+      {/* Right Side - Form Section */}
+      <div className="w-full lg:w-1/2 flex flex-col justify-center items-center px-6 md:px-10 py-8">
+        <h2 className="text-white text-3xl font-bold mb-2 text-center">
+          Good Morning!
+        </h2>
+        <p className="text-gray-400 mb-6 text-center">
+          Thank you for joining us!
+        </p>
 
-          <button className="w-full flex items-center justify-center gap-3 bg-blue-600 text-white font-medium py-2 px-4 rounded-md hover:bg-blue-700 transition duration-300">
-            <FaFacebookF className="text-xl" />
-            Sign Up with Facebook
-          </button>
-        </div>
-
-        <div className="flex items-center my-5">
-          <hr className="flex-grow border-gray-300" />
-          <span className="mx-3 text-gray-300">OR</span>
-          <hr className="flex-grow border-gray-300" />
-        </div>
-
-        {/* Signup Form */}
-        <form className="space-y-4">
-          <div>
-            <label className="text-white block mb-1">Full Name</label>
+        {/* Form */}
+        <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-md">
+          {/* Name Input */}
+          <div className="mb-4">
+            <label className="block text-gray-500 mb-1" htmlFor="name">
+              Full Name
+            </label>
             <input
               type="text"
-              placeholder="John Doe"
-              className="w-full px-4 py-2 rounded-md bg-white bg-opacity-20 text-white placeholder-gray-300 outline-none focus:ring-2 focus:ring-white"
+              id="name"
+              {...register("name", { required: "Name is required" })}
+              placeholder="Enter your full name"
+              className="w-full p-3 rounded bg-gray-800 text-white border border-gray-700 outline-none focus:ring-2 focus:ring-primary"
             />
+            {errors.name && (
+              <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
+            )}
           </div>
 
-          <div>
-            <label className="text-white block mb-1">Email</label>
+          {/* Email Input */}
+          <div className="mb-4">
+            <label className="block text-gray-500 mb-1" htmlFor="email">
+              Your Email
+            </label>
             <input
               type="email"
-              placeholder="example@mail.com"
-              className="w-full px-4 py-2 rounded-md bg-white bg-opacity-20 text-white placeholder-gray-300 outline-none focus:ring-2 focus:ring-white"
+              id="email"
+              {...register("email", { required: "Email is required" })}
+              placeholder="Enter your email"
+              className="w-full p-3 rounded bg-gray-800 text-white border border-gray-700 outline-none focus:ring-2 focus:ring-primary"
             />
+            {errors.email && (
+              <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+            )}
           </div>
 
-          <div>
-            <label className="text-white block mb-1">Password</label>
+          {/* Password Input */}
+          <div className="mb-4">
+            <label className="block text-gray-500 mb-1" htmlFor="password">
+              Password
+            </label>
             <input
               type="password"
-              placeholder="••••••••"
-              className="w-full px-4 py-2 rounded-md bg-white bg-opacity-20 text-white placeholder-gray-300 outline-none focus:ring-2 focus:ring-white"
+              id="password"
+              {...register("password", {
+                required: "Password is required",
+                minLength: {
+                  value: 6,
+                  message: "Password must be at least 6 characters",
+                },
+                maxLength: {
+                  value: 20,
+                  message: "Password cannot exceed 20 characters",
+                },
+                pattern: {
+                  value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
+                  message:
+                    "Must include uppercase, lowercase, number & special character",
+                },
+              })}
+              placeholder="Create a strong password"
+              className="w-full p-3 rounded bg-gray-800 text-white border border-gray-700 outline-none focus:ring-2 focus:ring-primary"
             />
+            {errors.password && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.password.message}
+              </p>
+            )}
           </div>
 
-          <button className="w-full bg-white text-purple-600 font-semibold py-2 px-4 rounded-md hover:bg-gray-200 transition duration-300">
-            Sign Up
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-full bg-primary py-3 text-white font-bold rounded hover:bg-[#b90101ce] transition duration-300"
+          >
+            Register
           </button>
         </form>
 
-        <p className="text-white mt-4 text-center">
+        {/* Already have an account? */}
+        <p className="text-gray-400 mt-5 text-center">
           Already have an account?{" "}
-          <Link href="/login" className="text-yellow-300 font-semibold hover:underline">
-            Sign In
+          <Link href="/login" className="text-primary hover:underline">
+            Login
           </Link>
         </p>
       </div>

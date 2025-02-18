@@ -1,69 +1,132 @@
 "use client";
-import { signIn } from "next-auth/react";
 import Link from "next/link";
-import { FcGoogle } from "react-icons/fc";
-import { FaFacebook } from "react-icons/fa";
+import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 const SignIn = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const [focusedField, setFocusedField] = useState(null);
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-blue-500 to-purple-600">
-      <div className="bg-white bg-opacity-10 backdrop-blur-lg p-8 rounded-lg shadow-2xl max-w-md w-full border border-white border-opacity-30 transform transition-all hover:scale-105 duration-300">
-        <h1 className="text-4xl font-bold text-center text-white mb-6">Welcome Back</h1>
-        <p className="text-center text-gray-300 mb-6">Sign in to continue to your account</p>
+    <div className="flex h-screen w-full bg-gray-900">
+      {/* Left Side - Hidden on small screens */}
+      <div className="hidden lg:block lg:w-1/2">
+        <img
+          src="https://i.ibb.co.com/rKjPspy8/john-fornander-TAZo-Um-Dqz-Xk-unsplash.jpg"
+          alt="Background"
+          className="h-full w-full object-cover"
+        />
+      </div>
 
-        {/* Social Login */}
-        <div className="space-y-4">
-          <button
-            onClick={() => signIn("google")}
-            className="w-full flex items-center justify-center bg-white bg-opacity-20 text-white font-medium py-2 px-4 rounded-md hover:bg-opacity-30 transition duration-300"
-          >
-            <FcGoogle className="w-6 h-6 mr-2" />
-            Sign In with Google
-          </button>
-          <button
-            onClick={() => signIn("facebook")}
-            className="w-full flex items-center justify-center bg-blue-600 text-white font-medium py-2 px-4 rounded-md hover:bg-blue-700 transition duration-300"
-          >
-            <FaFacebook className="w-6 h-6 mr-2" />
-            Sign In with Facebook
-          </button>
-        </div>
+      {/* Right Side - Form Section */}
+      <div className="w-full lg:w-1/2 flex flex-col justify-center items-center px-6 md:px-10 py-8">
+        <h2 className="text-white text-3xl font-bold mb-2 text-center">
+          Welcome Back!
+        </h2>
+        <p className="text-gray-400 mb-6 text-center">
+          Please sign in to continue.
+        </p>
 
-        <div className="flex items-center my-6">
-          <hr className="flex-grow border-gray-500 opacity-30" />
-          <span className="mx-3 text-gray-300">OR</span>
-          <hr className="flex-grow border-gray-500 opacity-30" />
-        </div>
-
-        {/* Email Sign-In */}
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            const email = e.target.email.value;
-            signIn("email", { email });
-          }}
-          className="space-y-4"
-        >
-          <div>
-            <input
-              type="email"
-              name="email"
-              placeholder="Enter your email"
-              className="w-full border border-gray-300 bg-white bg-opacity-20 text-white placeholder-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-white"
-            />
+        {/* Form */}
+        <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-md">
+          {/* Email Input */}
+          <div className="mb-4 relative">
+            <label className="block text-gray-500 mb-1" htmlFor="email">
+              Your Email
+            </label>
+            <div
+              className={`w-full p-3 rounded flex items-center border-2 ${focusedField === "email"
+                  ? "border-l-4 border-primary bg-gray-700"
+                  : "border-gray-700 bg-gray-800"
+                }`}
+            >
+              <input
+                type="email"
+                id="email"
+                {...register("email", { required: "Email is required" })}
+                placeholder="Enter your email"
+                className="w-full bg-transparent outline-none text-white"
+                onFocus={() => setFocusedField("email")}
+                onBlur={() => setFocusedField(null)}
+              />
+            </div>
+            {errors.email && (
+              <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+            )}
           </div>
+
+          {/* Password Input */}
+          <div className="mb-4 relative">
+            <label className="block text-gray-500 mb-1" htmlFor="password">
+              Password
+            </label>
+            <div
+              className={`w-full p-3 rounded flex items-center border-2 ${focusedField === "password"
+                  ? "border-l-4 border-primary bg-gray-700"
+                  : "border-gray-700 bg-gray-800"
+                }`}
+            >
+              <input
+                type="password"
+                id="password"
+                {...register("password", {
+                  required: "Password is required",
+                  minLength: {
+                    value: 6,
+                    message: "Password must be at least 6 characters",
+                  },
+                })}
+                placeholder="Enter your password"
+                className="w-full bg-transparent outline-none text-white"
+                onFocus={() => setFocusedField("password")}
+                onBlur={() => setFocusedField(null)}
+              />
+            </div>
+            {errors.password && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.password.message}
+              </p>
+            )}
+          </div>
+
+          {/* Remember Me & Forgot Password */}
+          <div className="flex justify-between items-center mb-4">
+            <label className="flex items-center text-gray-400 text-sm">
+              <input
+                type="checkbox"
+                className="mr-2 accent-primary"
+                {...register("rememberMe")}
+              />
+              Remember Me
+            </label>
+            <Link href="/forgot-password" className="text-primary text-sm hover:underline">
+              Forgot Password?
+            </Link>
+          </div>
+
+          {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-white text-blue-600 font-semibold py-2 px-4 rounded-md hover:bg-gray-200 transition duration-300"
+            className="w-full bg-primary py-3 text-white font-bold rounded hover:bg-[#b90101ce] transition duration-300"
           >
-            Sign In with Email
+            Sign In
           </button>
         </form>
 
-        <p className="text-center mt-6 text-gray-300">
-          Don't have an account?{" "}
-          <Link href="/register" className="text-yellow-300 font-semibold hover:underline">
-            Sign Up
+        {/* Don't have an account? */}
+        <p className="text-gray-400 mt-5 text-center">
+          Don’t have an account?{" "}
+          <Link href="/register" className="text-primary hover:underline">
+            Register
           </Link>
         </p>
       </div>
