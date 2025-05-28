@@ -1,5 +1,7 @@
 "use client";
+import Header from "@/Components/ui/Header";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { FaTrash } from "react-icons/fa";
 
@@ -45,88 +47,101 @@ const CartPage = () => {
   const removeItem = (id) => {
     setCart(cart.filter((item) => item.id !== id));
   };
-  
+
 
   // Calculate Total Price
   const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
 
+  const path = usePathname();
   return (
-    <div className="container mx-auto p-6 pt-28">
-      <h1 className="text-xl font-bold text-start text-gray-600 bg-gray-300 rounded-md w-full px-4 py-2 mb-6">Continue Shopping</h1>
+    <>
+      <Header Title={"Shoping Cart"} Path={path}></Header>
+      <div className="container mx-auto p-6 pt-28">
+        <h1 className="text-xl font-bold text-start text-gray-600 bg-gray-300 rounded-md w-full px-4 py-2 mb-6">Continue Shopping</h1>
 
-      {cart.length === 0 ? (
-        <p className="text-center text-gray-800">Your cart is empty.</p>
-      ) : (
-        <>
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse border border-gray-400">
-              <thead className="bg-gray-100">
-                <tr>
-                  <th className="border p-4 text-gray-800">Image</th>
-                  <th className="border p-4 text-gray-800">Product</th>
-                  <th className="border p-4 text-gray-800">Unit Price</th>
-                  <th className="border p-4 text-gray-800">Quantity</th>
-                  <th className="border p-4 text-gray-800">Total</th>
-                  <th className="border p-4 text-gray-800">Remove</th>
-                </tr>
-              </thead>
-              <tbody>
-                {cart.map((item) => (
-                  <tr key={item.id} className="text-center">
-                    <td className="border p-4 text-gray-800">
-                      <img src={item.image} alt={item.name} className="w-16 h-16 object-cover rounded" />
-                    </td>
-                    <td className="border p-4 text-gray-800">{item.name}</td>
-                    <td className="border p-4 text-gray-800">${item.price}</td>
-                    <td className="border p-4 text-gray-800">
-                      <div className="flex justify-center items-center space-x-2">
-                        <button
-                          onClick={() => decreaseQuantity(item.id)}
-                          className="bg-gray-300 text-gray-800 px-3 py-1 rounded"
-                        >
-                          -
-                        </button>
-                        <span>{item.quantity}</span>
-                        <button
-                          onClick={() => increaseQuantity(item.id)}
-                          className="bg-gray-300 text-gray-800 px-3 py-1 rounded"
-                        >
-                          +
-                        </button>
-                      </div>
-                    </td>
-                    <td className="border p-4 text-gray-800">${item.price * item.quantity}</td>
-                    <td className="border p-4 text-gray-800">
-                      <button onClick={() => removeItem(item.id)} className="text-primary">
-                        <FaTrash size={18} />
-                      </button>
-                    </td>
+        {cart.length === 0 ? (
+          <p className="text-center text-gray-800">Your cart is empty.</p>
+        ) : (
+          <>
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse border border-gray-400">
+                <thead className="bg-gray-100">
+                  <tr>
+                    <th className="border p-4 text-gray-800">Image</th>
+                    <th className="border p-4 text-gray-800">Product</th>
+                    <th className="border p-4 text-gray-800">Unit Price</th>
+                    <th className="border p-4 text-gray-800">Quantity</th>
+                    <th className="border p-4 text-gray-800">Total</th>
+                    <th className="border p-4 text-gray-800">Remove</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {cart.map((item) => (
+                    <tr key={item.id} className="text-center">
+                      <td className="border p-4 text-gray-800">
+                        <img src={item.image} alt={item.name} className="w-16 h-16 object-cover rounded" />
+                      </td>
+                      <td className="border p-4 text-gray-800">{item.name}</td>
+                      <td className="border p-4 text-gray-800">${item.price}</td>
+                      <td className="border p-4 text-gray-800">
+                        <div className="flex justify-center items-center space-x-2">
+                          <button
+                            onClick={() => decreaseQuantity(item.id)}
+                            className="bg-gray-300 text-gray-800 px-3 py-1 rounded"
+                          >
+                            -
+                          </button>
+                          <span>{item.quantity}</span>
+                          <button
+                            onClick={() => increaseQuantity(item.id)}
+                            className="bg-gray-300 text-gray-800 px-3 py-1 rounded"
+                          >
+                            +
+                          </button>
+                        </div>
+                      </td>
+                      <td className="border p-4 text-gray-800">${item.price * item.quantity}</td>
+                      <td className="border p-4 text-gray-800">
+                        <button onClick={() => removeItem(item.id)} className="text-primary">
+                          <FaTrash size={18} />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
 
-          {/* Cart Totals */}
-          <div className="mt-6 flex justify-end text-gray-900">
-            <div className="border p-6 w-80 bg-gray-200 rounded-md">
-              <h2 className="text-xl font-bold mb-4">Cart Totals</h2>
-              <div className="flex justify-between text-lg">
-                <span>Subtotal:</span>
-                <span>${totalPrice}</span>
+            <div className="text-xl flex justify-between items-center my-6 font-bold text-start bg-gray-1000 border-2 rounded-md w-full px-4 py-2 mb-6">
+              <div className="flex justify-start items-center gap-3">
+                <input className="bg-gray-200 p-2 text-black" type="text" name="coupon" id="coupon" placeholder="Coupon Code" />
+                <div className="button">Apply</div>
               </div>
-              <div className="flex justify-between text-lg font-bold mt-2">
-                <span>Total:</span>
-                <span>${totalPrice}</span>
+              <div className="button">Update</div>
+            </div>
+
+
+            {/* Cart Totals */}
+            <div className="mt-12 flex flex-col justify-end items-end text-gray-900">
+              <div className="border p-6 w-80 bg-gray-200 rounded-md">
+                <h2 className="text-xl font-bold mb-4">Cart Totals</h2>
+                <div className="flex justify-between text-lg">
+                  <span>Subtotal:</span>
+                  <span>${totalPrice}</span>
+                </div>
+                <div className="flex justify-between text-lg font-bold my-2">
+                  <span>Total:</span>
+                  <span>${totalPrice}</span>
+                </div>
               </div>
-              <Link href="/checkout" className="button w-full my-2">
+              <Link href="/checkout" className="button my-2">
                 Proceed to Checkout
               </Link>
             </div>
-          </div>
-        </>
-      )}
-    </div>
+          </>
+        )}
+      </div>
+    </>
   );
 };
 

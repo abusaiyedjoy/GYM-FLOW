@@ -50,7 +50,7 @@ const Navbar = () => {
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-white/30 backdrop-blur-md shadow-md"
+          ? "bg-black backdrop-blur-md shadow-md"
           : "bg-transparent text-white"
       }`}
     >
@@ -59,11 +59,11 @@ const Navbar = () => {
         <div className="text-2xl font-bold">
           <Link
             href="/"
-            className="text-primary transition-colors duration-300 flex justify-center items-center gap-2"
+            className="text-[#FE0000] transition-colors duration-300 flex justify-center items-center gap-2"
           >
             <img
               width={"42px"}
-              src="https://i.ibb.co.com/4sxSDzp/White-and-Blue-Modern-Gym-Logo-removebg-preview.png"
+              src="https://i.ibb.co.com/9mkSqS5t/logo-removebg-preview.png"
               alt="logo"
             />
             GymFlow
