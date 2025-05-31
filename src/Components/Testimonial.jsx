@@ -2,7 +2,7 @@ import Title from "./ui/Title";
 
 const Testimonial = () => {
     return (
-        <section className="text-center px-6 py-16 bg-white">
+        <section className="text-center px-6 py-12">
             <Title title={"Success Stories"} description={"Hear what our members have to say about their journey with"}/>
 
             {/* Testimonial Box */}

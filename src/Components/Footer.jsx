@@ -1,4 +1,3 @@
-import Image from "next/image";
 
 const Footer = () => {
   return (
@@ -31,12 +30,12 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="hover:text-red-500">About Us</a></li>
-              <li><a href="#" className="hover:text-red-500">Our Team</a></li>
-              <li><a href="#" className="hover:text-red-500">Latest Project</a></li>
-              <li><a href="#" className="hover:text-red-500">Pricing Plan</a></li>
-              <li><a href="#" className="hover:text-red-500">Latest Blog</a></li>
-              <li><a href="#" className="hover:text-red-500">Contact Us</a></li>
+              <li><a href="#" className="hover:text-primary">About Us</a></li>
+              <li><a href="#" className="hover:text-primary">Our Team</a></li>
+              <li><a href="#" className="hover:text-primary">Latest Project</a></li>
+              <li><a href="#" className="hover:text-primary">Pricing Plan</a></li>
+              <li><a href="#" className="hover:text-primary">Latest Blog</a></li>
+              <li><a href="#" className="hover:text-primary">Contact Us</a></li>
             </ul>
           </div>
 
@@ -44,13 +43,13 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-semibold mb-4">Our Services</h3>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="hover:text-red-500">Personal Training</a></li>
-              <li><a href="#" className="hover:text-red-500">Group Training</a></li>
-              <li><a href="#" className="hover:text-red-500">Muscle Building</a></li>
-              <li><a href="#" className="hover:text-red-500">Virtual Gym Training</a></li>
-              <li><a href="#" className="hover:text-red-500">Weight Loss Training</a></li>
-              <li><a href="#" className="hover:text-red-500">Body Stretching</a></li>
-              <li><a href="#" className="hover:text-red-500">Psycho Training</a></li>
+              <li><a href="#" className="hover:text-primary">Personal Training</a></li>
+              <li><a href="#" className="hover:text-primary">Group Training</a></li>
+              <li><a href="#" className="hover:text-primary">Muscle Building</a></li>
+              <li><a href="#" className="hover:text-primary">Virtual Gym Training</a></li>
+              <li><a href="#" className="hover:text-primary">Weight Loss Training</a></li>
+              <li><a href="#" className="hover:text-primary">Body Stretching</a></li>
+              <li><a href="#" className="hover:text-primary">Psycho Training</a></li>
             </ul>
           </div>
 
@@ -67,7 +66,7 @@ const Footer = () => {
                 />
                 <button
                   type="submit"
-                  className="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 transition"
+                  className="button"
                 >
                   Subscribe
                 </button>

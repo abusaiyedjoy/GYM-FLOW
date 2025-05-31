@@ -1,4 +1,5 @@
 "use client"
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const Banner = () => {
@@ -6,22 +7,32 @@ const Banner = () => {
     {
       title: "Welcome to GymFlow",
       description: "Your ultimate destination for fitness and health.",
-      buttonText: "Join Now",
+      buttonText: "Calculate BMI",
+      path: "/bmi"
     },
     {
       title: "Unleash Your Potential",
       description: "Achieve your fitness goals with personalized plans.",
       buttonText: "Start Today",
+      path: "/register"
     },
     {
       title: "Stronger Every Day",
       description: "Experience the best training programs and facilities.",
-      buttonText: "Get Started",
+      buttonText: "Our Shedule",
+      path: "/schedule"
     },
     {
       title: "Transform Your Life",
       description: "Take the first step towards a healthier lifestyle.",
       buttonText: "Sign Up",
+      path: "/register"
+    },
+    {
+      title: "MAKE YOUR BODY HEALTHY & FIT",
+      description: "Gymhen an unknown printer took a galley of type and scrambled.It has survived nknown printercenturies.",
+      buttonText: "Contact Us",
+      path: "/contact"
     },
   ];
 
@@ -57,10 +68,12 @@ const Banner = () => {
           <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
           {/* Overlay Content */}
-          <div className="relative text-center text-white">
-            <h1 className="text-4xl md:text-5xl font-bold">{slide.title}</h1>
+          <div className="relative text-start place-content-start text-white">
+            <h1 className="text-3xl md:text-4xl lg:max-w-[600px] uppercase font-extrabold">{slide.title}</h1>
             <p className="mt-4 text-lg md:text-xl">{slide.description}</p>
-            <button className="button mt-4">{slide.buttonText}</button>
+            <button className="button mt-4">
+              <Link href={slide.path} >{slide.buttonText}</Link>
+            </button>
           </div>
         </div>
       ))}

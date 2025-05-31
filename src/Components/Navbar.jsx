@@ -1,6 +1,8 @@
 "use client";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import logo from "./../../public/images/logo.png"
+import Image from "next/image";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -59,11 +61,11 @@ const Navbar = () => {
         <div className="text-2xl font-bold">
           <Link
             href="/"
-            className="text-[#FE0000] transition-colors duration-300 flex justify-center items-center gap-2"
+            className="text-primary text-lg md:text-xl font-extrabold uppercase transition-colors duration-300 flex justify-center items-center gap-2"
           >
-            <img
-              width={"42px"}
-              src="https://i.ibb.co.com/9mkSqS5t/logo-removebg-preview.png"
+            <Image
+              className="w-14"
+              src={logo}
               alt="logo"
             />
             GymFlow
