@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 
- const metadata = {
+const metadata = {
   title: "GYM-FLOW | Shop",
   description: "Explore our shop for the best fitness gear and accessories at GYM-FLOW.",
 };
@@ -24,7 +24,7 @@ const Shop = () => {
       rating: 4.5,
       stock: true,
       description: "A stylish and comfortable t-shirt for coding enthusiasts.",
-      sizes: ["Small", "Medium", "Large"],
+      sizes: ["S", "M", "L"],
       colors: ["#000000", "#FFFFFF", "#808080", "#0047AB", "#008000"],
       brand: "Shirt Flex",
       category: "T-Shirt",
@@ -43,7 +43,7 @@ const Shop = () => {
       rating: 4.8,
       stock: true,
       description: "Premium quality white t-shirt with a sleek coding design.",
-      sizes: ["Small", "Medium", "Large"],
+      sizes: ["S", "M", "L"],
       colors: ["#FFFFFF", "#000000", "#CCCCCC", "#808080", "#0047AB"],
       brand: "Shirt Flex",
       category: "T-Shirt",
@@ -62,7 +62,7 @@ const Shop = () => {
       rating: 4.4,
       stock: true,
       description: "Vibrant graphic tee for a casual look.",
-      sizes: ["Small", "Medium", "Large"],
+      sizes: ["S", "M", "L"],
       colors: ["#FF0000", "#0000FF", "#008000", "#FFD700", "#8A2BE2"],
       brand: "Graphic Tee Co.",
       category: "T-Shirt",
@@ -81,7 +81,7 @@ const Shop = () => {
       rating: 4.3,
       stock: true,
       description: "Trendy graphic t-shirt perfect for everyday wear.",
-      sizes: ["Small", "Medium", "Large"],
+      sizes: ["M", "L"],
       colors: ["#000000", "#FFFFFF", "#808080", "#0047AB", "#008000"],
       brand: "Graphic Tee Co.",
       category: "T-Shirt",
@@ -100,7 +100,7 @@ const Shop = () => {
       rating: 4.2,
       stock: true,
       description: "Casual graphic tee with a bold design.",
-      sizes: ["Small", "Medium", "Large"],
+      sizes: ["S", "M", "L"],
       colors: ["#FF5733", "#33FF57", "#5733FF", "#FFFF57", "#57FFFF"],
       brand: "Graphic Tee Co.",
       category: "T-Shirt",
@@ -119,7 +119,7 @@ const Shop = () => {
       rating: 4.7,
       stock: true,
       description: "High-quality gym wear for intense workouts.",
-      sizes: ["Small", "Medium", "Large"],
+      sizes: ["S", "M", "L"],
       colors: ["#000000", "#FFFFFF", "#A52A2A", "#FF4500", "#2E8B57"],
       brand: "Gym Flex",
       category: "Gym",
@@ -138,7 +138,7 @@ const Shop = () => {
       rating: 4.6,
       stock: true,
       description: "Breathable and durable gym attire.",
-      sizes: ["Small", "Medium", "Large"],
+      sizes: ["S", "M", "L"],
       colors: ["#B22222", "#FFD700", "#008080", "#DAA520", "#9400D3"],
       brand: "Gym Flex",
       category: "Gym",
@@ -157,7 +157,7 @@ const Shop = () => {
       rating: 4.5,
       stock: true,
       description: "Comfortable tank top designed for gym sessions.",
-      sizes: ["Small", "Medium", "Large"],
+      sizes: ["M", "L"],
       colors: ["#4682B4", "#FF6347", "#6A5ACD", "#5F9EA0", "#FFA07A"],
       brand: "Gym Flex",
       category: "Gym",
@@ -176,7 +176,7 @@ const Shop = () => {
       rating: 4.3,
       stock: true,
       description: "Lightweight gym shorts for maximum comfort.",
-      sizes: ["Small", "Medium", "Large"],
+      sizes: ["S", "M", "L"],
       colors: ["#000000", "#FFD700", "#8B0000", "#00CED1", "#FF7F50"],
       brand: "Gym Flex",
       category: "Gym",
@@ -195,7 +195,7 @@ const Shop = () => {
       rating: 4.9,
       stock: true,
       description: "Cool t-shirt for JavaScript developers.",
-      sizes: ["Small", "Medium", "Large"],
+      sizes: ["S", "M", "L"],
       colors: ["#F0DB4F", "#000000", "#FFFFFF", "#808080", "#0047AB"],
       brand: "Dev Shirts",
       category: "T-Shirt",
@@ -217,23 +217,26 @@ const Shop = () => {
         {products.map((product) => (
           <div
             key={product.id}
-            className="w-full max-w-sm bg-white border border-gray-200 p-5 rounded-2xl shadow-lg"
+            className="max-w-sm mx-auto bg-white border border-gray-200 p-5 rounded-2xl shadow-lg"
           >
-            <Image
-              className="w-full h-[250px] object-cover rounded-2xl bg-[#F8F8F8] border border-gray-300"
-              src={product.imageUrl}
-              alt={product.name}
-              width={1080}
-              height={1920}
-            />
-            <div className="px-2 py-2">
-              <Link href={`/shop/${product.id}`}>
-                <h5 className="text-xl font-bold tracking-tight text-gray-900 hover:text-orange-400">
-                  {product.name}
-                </h5>
-              </Link>
-              <div className="flex items-center mt-2.5 mb-5">
-                <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">
+            <Link href={`/shop/${product.id}`}>
+              <Image
+                className="w-full h-[250px] object-cover rounded-2xl bg-[#F8F8F8] border border-gray-300"
+                src={product.imageUrl}
+                alt={product.name}
+                width={1080}
+                height={1920}
+              />
+            </Link>
+            <div className="w-full px-2 py-2 text-start">
+              <h5 className="text-xl font-bold tracking-tight text-gray-900">
+                {product.name}
+              </h5>
+              <div className="flex justify-start items-center gap-2 mt-2.5 mb-5 ">
+                <div className="text-yellow-500 text-sm mb-1">
+                  {"★".repeat(product.rating)}{"☆".repeat(5 - product.rating)}
+                </div>
+                <span className="bg-red-100 text-primary text-xs font-semibold px-2.5 py-0.5 rounded">
                   {product.rating}
                 </span>
               </div>
@@ -241,9 +244,13 @@ const Shop = () => {
                 <span className="text-xl font-bold text-gray-900">
                   ${product.price}
                 </span>
-                <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5">
-                  Add to cart
-                </button>
+                <div>
+                  {product.sizes?.map((item, index) => (
+                    <span key={index} className="text-lg mr-2 p-2 rounded-2xl border hover:bg-primary font-bold text-gray-900 hover:text-white">
+                      {item}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

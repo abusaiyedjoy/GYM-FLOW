@@ -8,57 +8,52 @@ import {
   FaMobileAlt,
 } from "react-icons/fa";
 import FeatureCard from "./FeaturesCard";
+import Title from "../ui/Title";
+import { FaCalculator } from "react-icons/fa6";
 
 const features = [
   {
     title: "Member Management",
     description:
       "Easily track members, manage profiles, and handle membership plans with our intuitive interface.",
-    icon: <FaUsers />,
+    icon: <FaUsers size={24} />,
   },
   {
     title: "Class Scheduling",
     description:
       "Create and manage class schedules, allow online bookings, and send automatic reminders.",
-    icon: <FaCalendarAlt />,
+    icon: <FaCalendarAlt size={24} />,
   },
   {
     title: "Equipment Tracking",
     description:
       "Monitor equipment usage, maintenance schedules, and repairs to ensure everything runs smoothly.",
-    icon: <FaDumbbell />,
+    icon: <FaDumbbell size={24} />,
   },
   {
-    title: "Business Analytics",
+    title: "BMI Calculator",
     description:
-      "Gain insights with comprehensive reports on attendance, revenue, and member engagement.",
-    icon: <FaChartLine />,
+      "Enter your weight and height to calculate your BMI and get personalized health insights.",
+    icon: <FaCalculator size={24} />,
   },
   {
     title: "Payment Processing",
     description:
       "Secure and automated billing system with multiple payment options and invoice management.",
-    icon: <FaCreditCard />,
+    icon: <FaCreditCard size={24} />,
   },
   {
     title: "Mobile Access",
     description:
       "Access your gym management system anywhere, anytime with our responsive mobile interface.",
-    icon: <FaMobileAlt />,
+    icon: <FaMobileAlt size={24} />,
   },
 ];
 
 const Features = () => {
   return (
-    <section className="py-16 px-4 bg-gray-50">
-      <div className="max-w-6xl mx-auto text-center mb-12">
-        <h2 className="text-4xl font-bold mb-4">Powerful Features</h2>
-        <p className="text-gray-600">
-          Everything you need to efficiently manage your fitness center in one
-          integrated platform.
-        </p>
-      </div>
-
+    <section className="py-8 md:py-12 px-4 bg-[#F9FAFB] z-50">
+      <Title title={"Our Features"} description={"Discover what makes GymFlow the perfect fitness partner for you"} />
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {features.map((feature, index) => (
           <FeatureCard

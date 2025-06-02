@@ -28,14 +28,14 @@ export default function RootLayout({ children }) {
 
   const isAuthPage = pathname === "/login" || pathname === "/register" || pathname === "/forgot-password" || pathname === "/otp-verification";
   return (
-    <html lang="en">
+    <html lang="en" className="bg-black w-full">
       <head>
-        <link rel="icon" href="../../public/images/logo.png" />
+        <link rel="icon" type="image/png" href="/logo.png" />
         <title>Home - Gym Management</title>
         <meta name="description" content="Welcome to Gym Management!" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-100`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-100 w-[100vw]`}
       >
         {/* LOADING SCREEN */}
         <div
@@ -44,14 +44,13 @@ export default function RootLayout({ children }) {
         >
           <div className="text-center">
             <div className="w-16 h-16 border-4 border-gray-400 border-t-white rounded-full animate-spin mx-auto"></div>
-            <p className="mt-4 text-xl font-semibold">Loading...</p>
           </div>
         </div>
 
         {/* MAIN CONTENT */}
-        <div className="opacity-0 animate-fadeIn">
+        <div className="">
           {!isAuthPage && <Navbar />}
-          <div className="min-h-[90vh]">{children}</div>
+          <div>{children}</div>
           {!isAuthPage && <Footer />}
         </div>
       </body>

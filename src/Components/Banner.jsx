@@ -6,35 +6,41 @@ const Banner = () => {
   const slides = [
     {
       title: "Welcome to GymFlow",
-      description: "Your ultimate destination for fitness and health.",
+      description:
+        "Step into a fitness journey like no other. GymFlow combines state-of-the-art equipment with expert guidance to help you achieve a healthier, stronger body.",
       buttonText: "Calculate BMI",
       path: "/bmi"
     },
     {
-      title: "Unleash Your Potential",
-      description: "Achieve your fitness goals with personalized plans.",
+      title: "Transform Your Life",
+      description:
+        "Unlock your strength, boost endurance, and stay committed with our personalized fitness plans, tailored to meet your individual goals.",
       buttonText: "Start Today",
       path: "/register"
     },
     {
-      title: "Stronger Every Day",
-      description: "Experience the best training programs and facilities.",
-      buttonText: "Our Shedule",
+      title: "Get Stronger Every Day",
+      description:
+        "Join our community of motivated individuals and transform your routine with structured workouts and professional coaching.",
+      buttonText: "View Schedule",
       path: "/schedule"
     },
     {
-      title: "Transform Your Life",
-      description: "Take the first step towards a healthier lifestyle.",
-      buttonText: "Sign Up",
+      title: "Redefine Your Lifestyle",
+      description:
+        "Start your transformation today. From weight loss to muscle building, we support you at every step with expert advice and top-notch facilities.",
+      buttonText: "Join Now",
       path: "/register"
     },
     {
-      title: "MAKE YOUR BODY HEALTHY & FIT",
-      description: "Gymhen an unknown printer took a galley of type and scrambled.It has survived nknown printercenturies.",
+      title: "Build a Healthy & Fit Body",
+      description:
+        "GymFlow is more than a gym — it’s your partner in wellness. Our programs are designed to fit all fitness levels and deliver lasting results. Let’s shape a better you.",
       buttonText: "Contact Us",
       path: "/contact"
-    },
+    }
   ];
+
 
   const backgroundImage =
     "url('https://i.ibb.co.com/KhLKWfX/slide-2.jpg')";
@@ -45,9 +51,9 @@ const Banner = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-    }, 4000); 
+    }, 4000);
 
-    return () => clearInterval(interval); 
+    return () => clearInterval(interval);
   }, [slides.length]);
 
   return (
@@ -68,9 +74,9 @@ const Banner = () => {
           <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
           {/* Overlay Content */}
-          <div className="relative text-start place-content-start text-white">
-            <h1 className="text-3xl md:text-4xl lg:max-w-[600px] uppercase font-extrabold">{slide.title}</h1>
-            <p className="mt-4 text-lg md:text-xl">{slide.description}</p>
+          <div className="relative text-center place-content-center place-items-center text-white">
+            <h1 className="text-3xl md:text-4xl lg:max-w-xl uppercase font-extrabold">{slide.title}</h1>
+            <p className="mt-4 px-4 text-lg md:text-xl lg:max-w-2xl">{slide.description}</p>
             <button className="button mt-4">
               <Link href={slide.path} >{slide.buttonText}</Link>
             </button>
@@ -79,14 +85,14 @@ const Banner = () => {
       ))}
 
       {/* Navigation Buttons */}
-      <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+      <div className="absolute left-5 right-5 top-3/4 flex -translate-y-1/2 transform justify-between">
         <button
           onClick={() =>
             setCurrentSlide((prevSlide) =>
               prevSlide === 0 ? slides.length - 1 : prevSlide - 1
             )
           }
-          className="btn btn-circle"
+          className="!rounded-full !px-2 button"
         >
           ❮
         </button>
@@ -94,11 +100,12 @@ const Banner = () => {
           onClick={() =>
             setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length)
           }
-          className="btn btn-circle"
+          className="!rounded-full !px-2 button"
         >
           ❯
         </button>
       </div>
+
     </div>
   );
 };

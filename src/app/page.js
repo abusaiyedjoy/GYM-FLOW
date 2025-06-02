@@ -11,7 +11,7 @@ import PricingSection from "@/Components/Pricing/PricingSection";
 
 const Home = () => {
   return (
-    <main>
+    <main className="w-[100vw]">
       <Banner></Banner>
       <Features></Features>
       <GymStoreSlider></GymStoreSlider>
