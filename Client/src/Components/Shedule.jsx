@@ -1,73 +1,24 @@
 import Image from "next/image";
+import Title from "./ui/Title";
+import { days, hours, schedule } from "./Resource";
 
-const schedule = {
-  Monday: [
-    { time: "9:00am - 10:00am", title: "FITNESS", color: "text-orange-500" },
-    { time: "10:00am - 11:00am", title: "BODY BUILDING", color: "text-sky-500" },
-    { time: "4:00pm - 5:00pm", title: "RUNNING", color: "text-purple-500" },
-    { time: "6:00pm - 7:00pm", title: "FITNESS", color: "text-orange-500" },
-  ],
-  Tuesday: [
-    { time: "9:00am - 10:00am", title: "BOXING", color: "text-red-500" },
-    { time: "4:00pm - 5:00pm", title: "RUNNING", color: "text-purple-500" },
-  ],
-  Wednesday: [
-    { time: "9:00am - 10:00am", title: "CYCLING", color: "text-lime-500" },
-    { time: "11:00am - 12:00pm", title: "BODY BUILDING", color: "text-sky-500" },
-  ],
-  Thursday: [
-    { time: "1:00pm - 2:00pm", title: "BOXING", color: "text-red-500" },
-  ],
-  Friday: [
-    { time: "1:00pm - 2:00pm", title: "MEDITATION", color: "text-teal-500" },
-  ],
-  Saturday: [
-    { time: "1:00pm - 2:00pm", title: "BOXING", color: "text-red-500" },
-  ],
-  Sunday: [
-    { time: "10:00am - 11:00am", title: "BODY BUILDING", color: "text-sky-500" },
-    { time: "4:00pm - 5:00pm", title: "RUNNING", color: "text-purple-500" },
-  ],
-};
-
-const hours = [
-  "9:00am",
-  "10:00am",
-  "11:00am",
-  "1:00pm",
-  "4:00pm",
-  "6:00pm",
-];
-
-const days = [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
-];
 
 export default function ClassSchedule() {
   return (
-    <section className="bg-black text-white py-16 px-4 md:px-20 relative overflow-hidden">
+    <section className="bg-[#F9FAFB] text-white pb-12 px-4 md:px-20 relative overflow-hidden">
       <div className="text-center mb-12">
-        <p className="text-sm uppercase font-bold text-white inline-block bg-red-500 px-4 py-1 rounded-full mb-2">
+        <p className="text-sm uppercase font-bold text-primary inline-block px-4 py-1 rounded-full">
           Time & Table
         </p>
-        <h2 className="text-3xl font-bold mb-2">Weekly Class Schedule</h2>
-        <p className="text-gray-400 max-w-xl mx-auto">
-          Gymat an unknown printer took a galley of type and scrambled to make a type specimen book.
-        </p>
+        <Title className="!mt-0" title={"Weekly Class Schedule"} description={"Gymat an unknown printer took a galley of type and scrambled to make a type specimen book."} />
       </div>
 
-      <div className="overflow-x-auto">
-        <table className="w-full text-sm">
+      <div className="overflow-x-auto rounded-lg">
+        <table className="w-full text-sm bg-black rounded-lg">
           <thead>
             <tr>
               <th className="p-3 border border-gray-700 text-left w-24">Time</th>
-              {days.map((day) => (
+              {days?.map((day) => (
                 <th key={day} className="p-3 border border-gray-700 text-center">
                   {day.slice(0, 3).toUpperCase()}
                 </th>
@@ -75,10 +26,10 @@ export default function ClassSchedule() {
             </tr>
           </thead>
           <tbody>
-            {hours.map((hour) => (
+            {hours?.map((hour) => (
               <tr key={hour}>
                 <td className="p-3 border border-gray-700">{hour}</td>
-                {days.map((day) => {
+                {days?.map((day) => {
                   const slot = schedule[day]?.find((s) => s.time.startsWith(hour));
                   return (
                     <td key={day + hour} className="p-3 border border-gray-700 text-center">

@@ -1,45 +1,9 @@
 "use client"
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { slides } from "./Resource";
 
 const Banner = () => {
-  const slides = [
-    {
-      title: "Welcome to GymFlow",
-      description:
-        "Step into a fitness journey like no other. GymFlow combines state-of-the-art equipment with expert guidance to help you achieve a healthier, stronger body.",
-      buttonText: "Calculate BMI",
-      path: "/bmi"
-    },
-    {
-      title: "Transform Your Life",
-      description:
-        "Unlock your strength, boost endurance, and stay committed with our personalized fitness plans, tailored to meet your individual goals.",
-      buttonText: "Start Today",
-      path: "/register"
-    },
-    {
-      title: "Get Stronger Every Day",
-      description:
-        "Join our community of motivated individuals and transform your routine with structured workouts and professional coaching.",
-      buttonText: "View Schedule",
-      path: "/schedule"
-    },
-    {
-      title: "Redefine Your Lifestyle",
-      description:
-        "Start your transformation today. From weight loss to muscle building, we support you at every step with expert advice and top-notch facilities.",
-      buttonText: "Join Now",
-      path: "/register"
-    },
-    {
-      title: "Build a Healthy & Fit Body",
-      description:
-        "GymFlow is more than a gym — it’s your partner in wellness. Our programs are designed to fit all fitness levels and deliver lasting results. Let’s shape a better you.",
-      buttonText: "Contact Us",
-      path: "/contact"
-    }
-  ];
 
 
   const backgroundImage =
@@ -58,7 +22,7 @@ const Banner = () => {
 
   return (
     <div className="carousel w-full h-screen relative overflow-hidden">
-      {slides.map((slide, index) => (
+      {slides?.map((slide, index) => (
         <div
           key={index}
           style={{

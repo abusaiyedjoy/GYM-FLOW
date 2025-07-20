@@ -1,13 +1,52 @@
-"use client";
-import { Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import Title from "./ui/Title";
-import Link from "next/link";
-import Image from "next/image";
+import {
+  FaUsers,
+  FaCalendarAlt,
+  FaDumbbell,
+  FaChartLine,
+  FaCreditCard,
+  FaMobileAlt,
+} from "react-icons/fa";
+import { FaCalculator } from "react-icons/fa6";
 
-const products = [
+export const slides = [
+  {
+    title: "Welcome to GymFlow",
+    description:
+      "Step into a fitness journey like no other. GymFlow combines state-of-the-art equipment with expert guidance to help you achieve a healthier, stronger body.",
+    buttonText: "Calculate BMI",
+    path: "/bmi",
+  },
+  {
+    title: "Transform Your Life",
+    description:
+      "Unlock your strength, boost endurance, and stay committed with our personalized fitness plans, tailored to meet your individual goals.",
+    buttonText: "Start Today",
+    path: "/register",
+  },
+  {
+    title: "Get Stronger Every Day",
+    description:
+      "Join our community of motivated individuals and transform your routine with structured workouts and professional coaching.",
+    buttonText: "View Schedule",
+    path: "/schedule",
+  },
+  {
+    title: "Redefine Your Lifestyle",
+    description:
+      "Start your transformation today. From weight loss to muscle building, we support you at every step with expert advice and top-notch facilities.",
+    buttonText: "Join Now",
+    path: "/register",
+  },
+  {
+    title: "Build a Healthy & Fit Body",
+    description:
+      "GymFlow is more than a gym — it’s your partner in wellness. Our programs are designed to fit all fitness levels and deliver lasting results. Let’s shape a better you.",
+    buttonText: "Contact Us",
+    path: "/contact",
+  },
+];
+
+export const products = [
   {
     id: 1,
     name: "Code T-Shirt",
@@ -181,7 +220,7 @@ const products = [
   },
   {
     id: 10,
-    name: "JavaScript Developer",
+    name: "JavaScript Developer T-Shirt",
     price: 20.99,
     vat: 12,
     rating: 4.9,
@@ -200,91 +239,129 @@ const products = [
   },
 ];
 
-export default function GymStoreSlider() {
-  return (
-    <section className="bg-[#F9FAFB] text-center">
-      <Title title={"Our Online Gym Store"} description={"Gymat an unknown printer took a galley of type and scray aretea bled make a type specimen book. May has survived..."} />
-      <div className="relative py-16 px-4 md:px-20 text-center">
-        {/* ✅ Custom Navigation Buttons in Top Right */}
-        <div className="absolute top-0 right-10 z-10 flex gap-14 p-4">
-          <button className="swiper-button-prev !rounded-full !px-2 button">
-            ❮
-          </button>
-          <button className="swiper-button-next mx-8 !rounded-full !px-2 button">
-            ❯
-          </button>
-        </div>
+export const features = [
+  {
+    title: "Member Management",
+    description:
+      "Easily track members, manage profiles, and handle membership plans with our intuitive interface.",
+    icon: <FaUsers size={24} />,
+  },
+  {
+    title: "Class Scheduling",
+    description:
+      "Create and manage class schedules, allow online bookings, and send automatic reminders.",
+    icon: <FaCalendarAlt size={24} />,
+  },
+  {
+    title: "Equipment Tracking",
+    description:
+      "Monitor equipment usage, maintenance schedules, and repairs to ensure everything runs smoothly.",
+    icon: <FaDumbbell size={24} />,
+  },
+  {
+    title: "BMI Calculator",
+    description:
+      "Enter your weight and height to calculate your BMI and get personalized health insights.",
+    icon: <FaCalculator size={24} />,
+  },
+  {
+    title: "Payment Processing",
+    description:
+      "Secure and automated billing system with multiple payment options and invoice management.",
+    icon: <FaCreditCard size={24} />,
+  },
+  {
+    title: "Mobile Access",
+    description:
+      "Access your gym management system anywhere, anytime with our responsive mobile interface.",
+    icon: <FaMobileAlt size={24} />,
+  },
+];
 
-        <Swiper
-          modules={[Navigation]}
-          navigation={{
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev"
-          }}
-          spaceBetween={30}
-          slidesPerView={1}
-          breakpoints={{
-            640: { slidesPerView: 1 },
-            768: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
-            1440: { slidesPerView: 4 },
-          }}
-        >
-          {products.map((product) => (
-            <SwiperSlide key={product.id}>
-              <div
-                className="max-w-sm mx-auto bg-white border border-gray-200 p-5 rounded-2xl shadow-lg"
-              >
-                <Image
-                  className="w-full h-[250px] object-cover rounded-2xl bg-[#F8F8F8] border border-gray-300"
-                  src={product.imageUrl}
-                  alt={product.name}
-                  width={1080}
-                  height={1920}
-                />
-                <div className="w-full px-2 py-2 text-start">
-                  <h5 className="text-xl font-bold tracking-tight text-gray-900">
-                    {product.name}
-                  </h5>
-                  <div className="flex justify-start items-center gap-2 mt-2.5 mb-5 ">
-                    <div className="text-yellow-500 text-sm mb-1">
-                      {"★".repeat(product.rating)}{"☆".repeat(5 - product.rating)}
-                    </div>
-                    <span className="bg-red-100 text-primary text-xs font-semibold px-2.5 py-0.5 rounded">
-                      {product.rating}
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-xl font-bold text-gray-900">
-                      ${product.price}
-                    </span>
-                    <div>
-                      {product.sizes?.map((item, index) => (
-                        <span key={index} className="text-lg mr-2 p-2 rounded-2xl border hover:bg-primary font-bold text-gray-900 hover:text-white">
-                          {item}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <button className="text-white mx-auto flex justify-center items-center mt-4 bg-primary hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-m rounded-lg text-sm px-5 py-2.5">
-                    <span>🛒Add to cart</span>
-                  </button>
-                </div>
-              </div>
-            </SwiperSlide>
-          ))}
+export const schedule = {
+  Monday: [
+    { time: "9:00am - 10:00am", title: "FITNESS", color: "text-orange-500" },
+    {
+      time: "10:00am - 11:00am",
+      title: "BODY BUILDING",
+      color: "text-sky-500",
+    },
+    { time: "4:00pm - 5:00pm", title: "RUNNING", color: "text-purple-500" },
+    { time: "6:00pm - 7:00pm", title: "FITNESS", color: "text-orange-500" },
+  ],
+  Tuesday: [
+    { time: "9:00am - 10:00am", title: "BOXING", color: "text-red-500" },
+    { time: "4:00pm - 5:00pm", title: "RUNNING", color: "text-purple-500" },
+  ],
+  Wednesday: [
+    { time: "9:00am - 10:00am", title: "CYCLING", color: "text-lime-500" },
+    {
+      time: "11:00am - 12:00pm",
+      title: "BODY BUILDING",
+      color: "text-sky-500",
+    },
+  ],
+  Thursday: [
+    { time: "1:00pm - 2:00pm", title: "BOXING", color: "text-red-500" },
+  ],
+  Friday: [
+    { time: "1:00pm - 2:00pm", title: "MEDITATION", color: "text-teal-500" },
+  ],
+  Saturday: [
+    { time: "1:00pm - 2:00pm", title: "BOXING", color: "text-red-500" },
+  ],
+  Sunday: [
+    {
+      time: "10:00am - 11:00am",
+      title: "BODY BUILDING",
+      color: "text-sky-500",
+    },
+    { time: "4:00pm - 5:00pm", title: "RUNNING", color: "text-purple-500" },
+  ],
+};
 
-          {/* All Products button slide */}
-          <div className="flex items-center justify-center h-full p-6 rounded-lg shadow-md">
-            <Link
-              href="/shop"
-              className="button"
-            >
-              All Products →
-            </Link>
-          </div>
-        </Swiper>
-      </div>
-    </section>
-  );
-}
+export const hours = [
+  "9:00am",
+  "10:00am",
+  "11:00am",
+  "1:00pm",
+  "4:00pm",
+  "6:00pm",
+];
+
+export const days = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+];
+
+export const trainers = [
+  {
+    name: "Henry Carlose",
+    role: "Gym Trainer",
+    image: "https://i.ibb.co/JdrXKwH/Gym-shop-img-3.png",
+    socials: ["facebook", "twitter", "linkedin"],
+  },
+  {
+    name: "Jhon Williams",
+    role: "Fitness Trainer",
+    image: "https://i.ibb.co/Bw621f8/code-t-shirt-png.webp",
+    socials: ["facebook", "twitter", "linkedin"],
+  },
+  {
+    name: "Henry Joseph",
+    role: "Gym Trainer",
+    image: "https://i.ibb.co/JdrXKwH/Gym-shop-img-3.png",
+    socials: ["facebook", "twitter", "linkedin"],
+  },
+  {
+    name: "Esa Elizabed",
+    role: "Fitness Trainer",
+    image: "https://i.ibb.co/Bw621f8/code-t-shirt-png.webp",
+    socials: ["facebook", "twitter", "linkedin"],
+  },
+];
