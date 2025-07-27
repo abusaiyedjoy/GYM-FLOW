@@ -13,7 +13,7 @@ interface EnvConfig {
   BCRYPT_SALT_ROUND: string;
 }
 
-const loadEnvVeriables = (): EnvConfig => {
+const loadEnvVariables = (): EnvConfig => {
   const requiredEnvVariables: string[] = [
     "PORT",
     "DB_URL",
@@ -44,4 +44,4 @@ const loadEnvVeriables = (): EnvConfig => {
   };
 };
 
-export const envVars = loadEnvVeriables();
+export const envVars = loadEnvVariables();
