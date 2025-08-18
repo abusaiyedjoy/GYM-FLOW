@@ -1,15 +1,20 @@
-import { Types } from "mongoose";
+import { Date, Types } from "mongoose";
 
-export enum isActive {
+export enum Gender {
+    MALE = "male",
+    FEMALE = "female",
+    OTHER = "other"
+};
+export enum Status {
     ACTIVE = "active",
     INACTIVE = "inactive",
-    BLOCK = "block"
+    SUSPENDED = "suspended"
 };
 export enum Role {
-    USER = "user",
-    ADMIN = "admin",
     SUPER_ADMIN = "super-admin",
-    GUIDE = "guide"
+    MEMBER = "member",
+    TRAINER = "trainer",
+    MANAGER = "manager"
 };
 export interface IAuthProvider {
     provider : string,
@@ -19,17 +24,17 @@ export interface IAuthProvider {
 
 export interface IUser {
     _id: Types.ObjectId;
-    name?: string;
+    username?: string;
+    first_name: string,
+    last_name?: string,
     email: string;
     password?: string;
     phone?: string;
     address?: string;
     picture?: string;
-    isDeleted?: boolean;
-    isActive?: isActive;
-    isVerified?: boolean;
+    dateOfBirth?: Date;
+    gender?: Gender;
+    status?: Status;
     role: Role;
     auth: IAuthProvider[];
-    bookings?: Types.ObjectId[];
-    guides?: Types.ObjectId[];
 }

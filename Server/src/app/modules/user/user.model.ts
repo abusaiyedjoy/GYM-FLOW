@@ -1,5 +1,5 @@
 import { model, Schema } from "mongoose";
-import { IAuthProvider, isActive, IUser, Role } from "./user.interface";
+import { IAuthProvider, IUser, Role } from "./user.interface";
 
 
 const authProviderSchema = new Schema<IAuthProvider>({
@@ -11,13 +11,15 @@ const authProviderSchema = new Schema<IAuthProvider>({
 })
 
 const userSchema = new Schema<IUser>({
-    name: {type: String, required: true},
+    username: {type: String, unique: true},
+    first_name: {type: String, required: true},
+    last_name: {type: String},
     email: {type: String, required: true, unique: true},
     password: {type: String},
     phone: {type: String},
     picture: {type: String},
     address: {type: String},
-    isDeleted: {type: Boolean, default: false},
+    dateOfBirth: {type: Date},
     isVerified: {type: Boolean, default: false},
     role: {
         type: String,
